@@ -3035,13 +3035,13 @@
             const now = new Date();
             const dateStr = now.toLocaleString('ru-RU', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
 
-            const text = `📩 *Новая заявка с сайта #${appCount}*\n` +
+            const text = `📩 <b>Новая заявка с сайта #${appCount}</b>\n` +
                          `🕐 ${dateStr}\n\n` +
-                         `👤 *Имя:* ${name}\n` +
-                         `🏢 *Ниша:* ${niche}\n` +
-                         `📋 *Формат:* ${format}\n` +
-                         `❓ *Вопрос:* ${question}\n` +
-                         `📱 *Контакт:* ${contact}`;
+                         `👤 <b>Имя:</b> ${name}\n` +
+                         `🏢 <b>Ниша:</b> ${niche}\n` +
+                         `📋 <b>Формат:</b> ${format}\n` +
+                         `❓ <b>Вопрос:</b> ${question}\n` +
+                         `📱 <b>Контакт:</b> ${contact}`;
 
             // ⚠️ ВНИМАНИЕ: В идеале токен нужно скрыть за серверным прокси. Для небольшого сайта допустимо.
             const BOT_TOKEN = '8796115094:AAFMyPNjxJYEYLH_MpAIn6LDHl5vqtz2T78';
@@ -3055,7 +3055,7 @@
                     body: JSON.stringify({
                         chat_id: CHAT_ID,
                         text: text,
-                        parse_mode: 'Markdown'
+                        parse_mode: 'HTML'
                     })
                 });
 
@@ -3273,5 +3273,6 @@
         <button class="cookie-btn" onclick="acceptCookies()">Принять</button>
     </div>
 
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
