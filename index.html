@@ -2253,6 +2253,105 @@
             50% { opacity: 0.5; }
         }
 
+
+        /* No spots alternative */
+        .no-spots-block {
+            display: none;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .no-spots-block.visible {
+            display: block;
+        }
+
+        .no-spots-message {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .alt-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .alt-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 24px 28px;
+            max-width: 280px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .alt-card:hover {
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alt-card-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .alt-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .alt-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .alt-card .alt-price {
+            color: var(--accent-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .alt-card .btn {
+            padding: 12px 24px;
+            font-size: 0.85rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+
+        /* Currency icon — SVG inline */
+        .byn-icon {
+            display: inline-block;
+            width: 0.65em;
+            height: 0.82em;
+            vertical-align: baseline;
+            position: relative;
+            top: 0.05em;
+        }
+
+        .price .byn-icon {
+            width: 0.55em;
+            height: 0.7em;
+        }
+
+        .compare-table .byn-icon {
+            width: 0.6em;
+            height: 0.76em;
+        }
+
     </style>
 
     <script type="application/ld+json">
@@ -2628,11 +2727,34 @@
             </ul>
             <br>
             <a href="#contact" class="btn">Записаться на бесплатный разбор</a>
-            <div class="spots-counter">
-                <div class="spots-number" id="freeSpots">3</div>
-                <div class="spots-text">
-                    <strong>из 5 мест свободно</strong>
-                    на бесплатный разбор в этом месяце
+            <!-- Счётчик свободных мест -->
+            <div id="spotsContainer">
+                <div class="spots-counter" id="spotsAvailable">
+                    <div class="spots-number" id="freeSpots">...</div>
+                    <div class="spots-text">
+                        <strong>из 5 мест свободно</strong>
+                        на бесплатный разбор в этом месяце
+                    </div>
+                </div>
+                
+                <div class="no-spots-block" id="noSpotsBlock">
+                    <p class="no-spots-message">😔 К сожалению, все бесплатные места в этом месяце заняты</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">Но у вас есть два варианта:</p>
+                    <div class="alt-options">
+                        <div class="alt-card">
+                            <div class="alt-card-icon">📋</div>
+                            <h4>Лист ожидания</h4>
+                            <p>Вопрос не срочный? Запишитесь в лист ожидания — свяжусь с вами в начале следующего месяца</p>
+                            <a href="#contact" class="btn btn-outline">Записаться в лист</a>
+                        </div>
+                        <div class="alt-card">
+                            <div class="alt-card-icon">⚡</div>
+                            <h4>Срочный разбор</h4>
+                            <p>Вопрос не ждёт? Получите ознакомительную консультацию прямо сейчас по спеццене</p>
+                            <div class="alt-price">35 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> (бел. руб.)</div>
+                            <a href="#contact" class="btn">Записаться за 35 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> (бел. руб.)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2648,7 +2770,7 @@
             <div class="tariff-card fade-in">
                 <h3>Быстрый разбор</h3>
                 <p class="tariff-desc">Для одного конкретного вопроса</p>
-                <div class="price">70 <span>BYN</span></div>
+                <div class="price">70 <span><svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> <small style="font-size:0.7em;opacity:0.6">(бел. руб.)</small></span></div>
                 <ul class="tariff-features">
                     <li>Разбор 1 конкретного вопроса</li>
                     <li>Анализ текущей ситуации</li>
@@ -2660,7 +2782,7 @@
             <div class="tariff-card fade-in">
                 <h3>Глубокое погружение</h3>
                 <p class="tariff-desc">Для комплексных запросов</p>
-                <div class="price">185 <span>BYN</span></div>
+                <div class="price">185 <span><svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> <small style="font-size:0.7em;opacity:0.6">(бел. руб.)</small></span></div>
                 <ul class="tariff-features">
                     <li>Разбор одного комплексного запроса</li>
                     <li>Формирование списка уточняющих вопросов</li>
@@ -2688,7 +2810,7 @@
                     <li>Анализ сильных и слабых сторон на старте</li>
                     <li>Рекомендации по усилению позиций и оптимизации</li>
                 </ul>
-                <div class="price" style="font-size: 2.2rem; margin-bottom: 24px;">130 <span>BYN</span></div>
+                <div class="price" style="font-size: 2.2rem; margin-bottom: 24px;">130 <span><svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> <small style="font-size:0.7em;opacity:0.6">(бел. руб.)</small></span></div>
                 <a href="#contact" class="btn" style="width: 100%; justify-content: center;">Заказать разбор стартапа</a>
             </div>
             <div class="package-card fade-in">
@@ -2700,7 +2822,7 @@
                     <li>Стратегические рекомендации по развитию</li>
                     <li>Прогноз на 6 месяцев (если ничего не менять)</li>
                 </ul>
-                <div class="price" style="font-size: 2.2rem; margin-bottom: 24px;">180 <span>BYN</span></div>
+                <div class="price" style="font-size: 2.2rem; margin-bottom: 24px;">180 <span><svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> <small style="font-size:0.7em;opacity:0.6">(бел. руб.)</small></span></div>
                 <a href="#contact" class="btn" style="width: 100%; justify-content: center;">Заказать разбор бизнеса</a>
             </div>
         </div>
@@ -2709,9 +2831,9 @@
             <h3>Комплексный анализ: Стартап + Погружение</h3>
             <p>Получите полный разбор вашего проекта: диагностику на старте и глубокую проработку ключевого вопроса в одном пакете</p>
             <div class="bundle-prices">
-                <span class="bundle-old-price">315 BYN</span>
-                <span class="bundle-new-price">280 <span>BYN</span></span>
-                <span class="bundle-save">Экономия 35 BYN</span>
+                <span class="bundle-old-price">315 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg></span>
+                <span class="bundle-new-price">280 <span><svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> <small style="font-size:0.7em;opacity:0.6">(бел. руб.)</small></span></span>
+                <span class="bundle-save">Экономия 35 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg> (бел. руб.)</span>
             </div>
             <a href="#contact" class="btn">Заказать комплекс</a>
         </div>
@@ -2786,10 +2908,10 @@
                 </tr>
                 <tr>
                     <td>Стоимость</td>
-                    <td>70 BYN</td>
-                    <td>185 BYN</td>
-                    <td>130 BYN</td>
-                    <td>180 BYN</td>
+                    <td>70 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg></td>
+                    <td>185 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg></td>
+                    <td>130 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg></td>
+                    <td>180 <svg class="byn-icon" viewBox="0 0 680 850" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M130 0h420v85H225v230h175c155 0 265 110 265 260s-110 260-265 260H225v30H130v-30H20v-80h110v-100H20v-80h110V0zM225 555v180h175c100 0 165-75 165-180 0-105-65-180-165-180H225v95h175c55 0 80 38 80 85s-25 85-80 85H225v-85z"/></svg></td>
                 </tr>
             </tbody>
         </table>
@@ -2973,10 +3095,12 @@
                     <select required>
                         <option value="">Выберите вариант</option>
                         <option value="free">Ознакомительная консультация (Бесплатно)</option>
-                        <option value="fast">Быстрый разбор (70 BYN)</option>
-                        <option value="deep">Глубокое погружение (185 BYN)</option>
-                        <option value="startup">Разбор Стартапа (130 BYN)</option>
-                        <option value="business">Разбор Бизнеса (180 BYN)</option>
+                        <option value="urgent">Срочный разбор (35 бел. руб.)</option>
+                        <option value="fast">Быстрый разбор (70 бел. руб.)</option>
+                        <option value="deep">Глубокое погружение (185 бел. руб.)</option>
+                        <option value="startup">Разбор Стартапа (130 бел. руб.)</option>
+                        <option value="business">Разбор Бизнеса (180 бел. руб.)</option>
+                        <option value="waitlist">Лист ожидания (бесплатный разбор)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -3100,6 +3224,12 @@
                 });
 
                 if (response.ok) {
+                    // Уменьшить счётчик если выбран бесплатный разбор
+                    const selectedValue = this.querySelector('select').value;
+                    if (selectedValue === 'free') {
+                        decrementSpots();
+                    }
+                    
                     btn.textContent = '✓ Заявка отправлена!';
                     btn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
                     btn.style.opacity = '1';
@@ -3238,12 +3368,89 @@
         if (statsBar) statsObserver.observe(statsBar);
 
 
-        // Free spots counter — подсветка при малом количестве
-        const spotsEl = document.getElementById('freeSpots');
-        if (spotsEl) {
-            const spots = parseInt(spotsEl.textContent);
-            if (spots <= 2) spotsEl.classList.add('low');
+        // Автоматический счётчик свободных мест
+        const JSONBIN_ID = '6a1ab01eddf5aa59f777d157';
+        const JSONBIN_KEY = '$2a$10$8zWy4b86Dx4bmd5uPSU.ruSH8T2lFzRQL6u4fl225.4ypDaSjs3fC';
+
+        async function loadFreeSpots() {
+            try {
+                const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
+                    headers: { 'X-Master-Key': JSONBIN_KEY }
+                });
+                const data = await res.json();
+                let { spots, month, year } = data.record;
+
+                // Автосброс если наступил новый месяц
+                const now = new Date();
+                const currentMonth = now.getMonth() + 1;
+                const currentYear = now.getFullYear();
+
+                if (currentMonth !== month || currentYear !== year) {
+                    spots = 5;
+                    await updateSpots(spots, currentMonth, currentYear);
+                }
+
+                displaySpots(spots);
+            } catch (e) {
+                // Если ошибка — показываем 5 по умолчанию
+                displaySpots(5);
+            }
         }
+
+        function displaySpots(spots) {
+            const spotsEl = document.getElementById('freeSpots');
+            const availableBlock = document.getElementById('spotsAvailable');
+            const noSpotsBlock = document.getElementById('noSpotsBlock');
+
+            if (spots > 0) {
+                spotsEl.textContent = spots;
+                if (spots <= 2) spotsEl.classList.add('low');
+                availableBlock.style.display = 'inline-flex';
+                noSpotsBlock.classList.remove('visible');
+            } else {
+                availableBlock.style.display = 'none';
+                noSpotsBlock.classList.add('visible');
+            }
+        }
+
+        async function updateSpots(spots, month, year) {
+            try {
+                await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_KEY
+                    },
+                    body: JSON.stringify({ spots: spots, month: month, year: year })
+                });
+            } catch (e) {}
+        }
+
+        async function decrementSpots() {
+            try {
+                const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
+                    headers: { 'X-Master-Key': JSONBIN_KEY }
+                });
+                const data = await res.json();
+                let { spots, month, year } = data.record;
+                const now = new Date();
+                const currentMonth = now.getMonth() + 1;
+                const currentYear = now.getFullYear();
+
+                if (currentMonth !== month || currentYear !== year) {
+                    spots = 5;
+                    month = currentMonth;
+                    year = currentYear;
+                }
+
+                if (spots > 0) spots--;
+                await updateSpots(spots, month, year);
+                displaySpots(spots);
+            } catch (e) {}
+        }
+
+        // Загрузить счётчик при открытии страницы
+        loadFreeSpots();
 
         // Lightbox для отзывов
         const reviewImages = [
@@ -3316,5 +3523,5 @@
 
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a03cd6cb1f0b48d3',t:'MTc4MDEzNDY3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
