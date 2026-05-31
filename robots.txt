@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marina-site.gorislavkamarina.workers.dev/sitemap.xml
