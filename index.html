@@ -3401,10 +3401,15 @@
         async function loadFreeSpots() {
             try {
                 const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
-                    headers: { 'X-Master-Key': JSONBIN_KEY }
+                    headers: { 
+                        'X-Master-Key': JSONBIN_KEY,
+                        'X-Bin-Meta': 'false'
+                    }
                 });
                 const data = await res.json();
-                let { spots, month, year } = data.record;
+                let spots = data.spots;
+                let month = data.month;
+                let year = data.year;
 
                 // Автосброс если наступил новый месяц
                 const now = new Date();
@@ -3418,7 +3423,7 @@
 
                 displaySpots(spots);
             } catch (e) {
-                // Если ошибка — показываем 5 по умолчанию
+                console.log('Spots error:', e);
                 displaySpots(5);
             }
         }
@@ -3428,14 +3433,16 @@
             const availableBlock = document.getElementById('spotsAvailable');
             const noSpotsBlock = document.getElementById('noSpotsBlock');
 
-            if (spots > 0) {
-                spotsEl.textContent = spots;
-                if (spots <= 2) spotsEl.classList.add('low');
-                availableBlock.style.display = 'inline-flex';
-                noSpotsBlock.classList.remove('visible');
-            } else {
-                availableBlock.style.display = 'none';
-                noSpotsBlock.classList.add('visible');
+            if (spotsEl && availableBlock && noSpotsBlock) {
+                if (spots > 0) {
+                    spotsEl.textContent = spots;
+                    if (spots <= 2) spotsEl.classList.add('low');
+                    availableBlock.style.display = 'inline-flex';
+                    noSpotsBlock.classList.remove('visible');
+                } else {
+                    availableBlock.style.display = 'none';
+                    noSpotsBlock.classList.add('visible');
+                }
             }
         }
 
@@ -3449,16 +3456,21 @@
                     },
                     body: JSON.stringify({ spots: spots, month: month, year: year })
                 });
-            } catch (e) {}
+            } catch (e) { console.log('Update error:', e); }
         }
 
         async function decrementSpots() {
             try {
                 const res = await fetch('https://api.jsonbin.io/v3/b/' + JSONBIN_ID + '/latest', {
-                    headers: { 'X-Master-Key': JSONBIN_KEY }
+                    headers: { 
+                        'X-Master-Key': JSONBIN_KEY,
+                        'X-Bin-Meta': 'false'
+                    }
                 });
                 const data = await res.json();
-                let { spots, month, year } = data.record;
+                let spots = data.spots;
+                let month = data.month;
+                let year = data.year;
                 const now = new Date();
                 const currentMonth = now.getMonth() + 1;
                 const currentYear = now.getFullYear();
@@ -3472,7 +3484,7 @@
                 if (spots > 0) spots--;
                 await updateSpots(spots, month, year);
                 displaySpots(spots);
-            } catch (e) {}
+            } catch (e) { console.log('Decrement error:', e); }
         }
 
         // Загрузить счётчик при открытии страницы
@@ -3548,6 +3560,6 @@
     </a>
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a050bf117c6eccd2',t:'MTc4MDM0MzQxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a050d72a6a74d082',t:'MTc4MDM0NDQwMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
