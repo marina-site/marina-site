@@ -2384,6 +2384,93 @@
             height: 0.76em;
         }
 
+
+        /* Special offer after free */
+        .special-offer-section {
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.06) 0%, rgba(197, 160, 89, 0.02) 100%);
+            border: 1px solid rgba(197, 160, 89, 0.12);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin: 60px 24px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-offer-section::before {
+            content: '🔥';
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.4rem;
+        }
+
+        .special-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: var(--bg-color);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .special-offer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .special-offer-section > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 24px;
+            line-height: 1.6;
+        }
+
+        .discount-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .discount-item {
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        .discount-item .name {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .discount-item .old-price {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 0.85rem;
+        }
+
+        .discount-item .new-price {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .timer-note {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
     </style>
 
     <script type="application/ld+json">
@@ -2754,8 +2841,8 @@
             <span class="question">«Что на самом деле мешает мне больше зарабатывать в этом проекте?»</span>
             <ul class="free-list">
                 <li>Разбор 1 конкретного вопроса</li>
-                <li>Анализ ситуации и поиск решения</li>
-                <li>Индивидуальная PDF-методичка по итогу</li>
+                <li>Диагностика ключевой проблемы</li>
+                <li>Направление для дальнейшей работы</li>
             </ul>
             <br>
             <a href="#contact" class="btn">Записаться на бесплатный разбор</a>
@@ -2789,6 +2876,34 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 0;">
+        <div class="special-offer-section fade-in">
+            <div class="special-badge">ТОЛЬКО ДЛЯ УЧАСТНИКОВ БЕСПЛАТНОГО РАЗБОРА</div>
+            <h3>Были на бесплатном разборе?</h3>
+            <p>В течение 48 часов после ознакомительной консультации — скидка 20% на любой тариф</p>
+            <div class="discount-grid">
+                <div class="discount-item">
+                    <div class="name">Быстрый разбор</div>
+                    <span class="old-price">70</span> → <span class="new-price">56 бел. руб.</span>
+                </div>
+                <div class="discount-item">
+                    <div class="name">Глубокое погружение</div>
+                    <span class="old-price">185</span> → <span class="new-price">148 бел. руб.</span>
+                </div>
+                <div class="discount-item">
+                    <div class="name">Разбор Стартапа</div>
+                    <span class="old-price">130</span> → <span class="new-price">104 бел. руб.</span>
+                </div>
+                <div class="discount-item">
+                    <div class="name">Разбор Бизнеса</div>
+                    <span class="old-price">180</span> → <span class="new-price">144 бел. руб.</span>
+                </div>
+            </div>
+            <a href="#contact" class="btn">Записаться со скидкой</a>
+            <p class="timer-note">⏳ Предложение действует 48 часов после бесплатного разбора</p>
         </div>
     </section>
 
