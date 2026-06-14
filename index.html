@@ -2471,6 +2471,56 @@
             margin-top: 16px;
         }
 
+
+        /* Trust carousel */
+        .trust-panel {
+            padding: 24px 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            background: rgba(197, 160, 89, 0.02);
+            overflow: hidden;
+        }
+
+        .trust-track {
+            display: flex;
+            gap: 24px;
+            animation: trustScroll 25s linear infinite;
+            width: max-content;
+        }
+
+        .trust-track:hover {
+            animation-play-state: paused;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: rgba(197, 160, 89, 0.06);
+            border: 1px solid rgba(197, 160, 89, 0.12);
+            border-radius: 100px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .trust-badge:hover {
+            background: rgba(197, 160, 89, 0.12);
+            border-color: rgba(197, 160, 89, 0.25);
+            color: var(--accent-light);
+        }
+
+        .trust-badge .trust-icon {
+            font-size: 1rem;
+        }
+
+        @keyframes trustScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 
     <script type="application/ld+json">
@@ -2568,48 +2618,23 @@
 
 
 
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="marquee-item"><span>✦</span>«Всё в самое яблочко!»</div>
-            <div class="marquee-item"><span>✦</span>«Стратегическая сессия с наставником»</div>
-            <div class="marquee-item"><span>✦</span>«Я до сих пор в шоке, как это работает»</div>
-            <div class="marquee-item"><span>✦</span>«Всё чётко и без воды»</div>
-            <div class="marquee-item"><span>✦</span>«Появился чёткий план действий на полгода»</div>
-            <div class="marquee-item"><span>✦</span>«Описали мои внутренние сомнения, о которых я не рассказывала»</div>
-            <div class="marquee-item"><span>✦</span>«По факту, без воды, с простроенными выводами»</div>
-            <div class="marquee-item"><span>✦</span>«Не поверила бы, если не увидела сама»</div>
-            <!-- Дубликаты для бесшовной анимации -->
-            <div class="marquee-item"><span>✦</span>«Всё в самое яблочко!»</div>
-            <div class="marquee-item"><span>✦</span>«Стратегическая сессия с наставником»</div>
-            <div class="marquee-item"><span>✦</span>«Я до сих пор в шоке, как это работает»</div>
-            <div class="marquee-item"><span>✦</span>«Всё чётко и без воды»</div>
-            <div class="marquee-item"><span>✦</span>«Появился чёткий план действий на полгода»</div>
-            <div class="marquee-item"><span>✦</span>«Описали мои внутренние сомнения, о которых я не рассказывала»</div>
-            <div class="marquee-item"><span>✦</span>«По факту, без воды, с простроенными выводами»</div>
-            <div class="marquee-item"><span>✦</span>«Не поверила бы, если не увидела сама»</div>
+    <div class="trust-panel">
+        <div class="trust-track">
+            <span class="trust-badge"><span class="trust-icon">🏢</span> Директор мебельного магазина</span>
+            <span class="trust-badge"><span class="trust-icon">📊</span> 6 лет в операционке</span>
+            <span class="trust-badge"><span class="trust-icon">🔮</span> 40+ бизнес-разборов</span>
+            <span class="trust-badge"><span class="trust-icon">🎯</span> 19 ниш</span>
+            <span class="trust-badge"><span class="trust-icon">🌍</span> Онлайн, по всему миру</span>
+            <span class="trust-badge"><span class="trust-icon">🔒</span> 100% конфиденциально</span>
+            <!-- Дубликаты для бесшовной прокрутки -->
+            <span class="trust-badge"><span class="trust-icon">🏢</span> Директор мебельного магазина</span>
+            <span class="trust-badge"><span class="trust-icon">📊</span> 6 лет в операционке</span>
+            <span class="trust-badge"><span class="trust-icon">🔮</span> 40+ бизнес-разборов</span>
+            <span class="trust-badge"><span class="trust-icon">🎯</span> 19 ниш</span>
+            <span class="trust-badge"><span class="trust-icon">🌍</span> Онлайн, по всему миру</span>
+            <span class="trust-badge"><span class="trust-icon">🔒</span> 100% конфиденциально</span>
         </div>
     </div>
-
-    <section class="container" style="padding: 0;">
-        <div class="stats-bar fade-in">
-            <div class="stat-item">
-                <div class="stat-number">3+</div>
-                <div class="stat-label">года практики</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">40+</div>
-                <div class="stat-label">разборов проведено</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">19+</div>
-                <div class="stat-label">ниш бизнеса</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">конфиденциальность</div>
-            </div>
-        </div>
-    </section>
 
     <section class="pain-points">
         <div class="container">
@@ -3461,5 +3486,5 @@
 
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0ba445b38a1c079',t:'MTc4MTQ0OTg4MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
